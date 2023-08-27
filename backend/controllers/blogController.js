@@ -1,4 +1,4 @@
-const blogModel = require("../models/blogModel");
+const blogModel = require("../models/transactionModel");
 
 const getAllBlogs = async (req, res) => {
   try {
