@@ -8,7 +8,10 @@ function Navbar() {
         <div>LOGO</div>
         <ul>
           <li>
-            <Link>Logout</Link>
+            <Link to="/register">Register</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </div>
