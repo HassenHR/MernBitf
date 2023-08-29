@@ -7,6 +7,11 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 300;
 }
+section {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
 .container {
   max-width: 1200px;
   width: 90%;
@@ -65,7 +70,7 @@ form input {
   margin-bottom: 1rem;
 }
 button {
-  margin-top: 0.5rem;
+  margin: 0.5rem;
   padding: 0.2rem 0.4rem;
   cursor: pointer;
   font-size: 1rem;
@@ -81,4 +86,9 @@ article {
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin: 1rem auto;
   padding: 1rem;
+}
+.googl-login-btn {
+  background-color: red;
+  color: white;
+  border: none;
 }

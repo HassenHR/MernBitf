@@ -1,31 +1,19 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Home from "./pages/Home";
-import styled from "styled-components";
-import Navbar from "./components/Navbar";
-import Landing from "./pages/Landing";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Login from "./pages/auth/Login";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Wrapper>
+    <>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </Wrapper>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
-
-const Wrapper = styled.div`
-  max-width: 1200px;
-  width: 90%;
-  margin: auto;
-`;
 
 export default App;
