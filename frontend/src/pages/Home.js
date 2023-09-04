@@ -9,10 +9,10 @@ function Home() {
       <section>
         <h1>Home page</h1>
         <button>
-          <Link to="register">Register</Link>
+          <Link to="/register">Register</Link>
         </button>
         <button>
-          <Link to="login">Login</Link>
+          <Link to="/login">Login</Link>
         </button>
       </section>
     </div>
