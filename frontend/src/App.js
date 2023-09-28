@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
+import ChangePassword from "./pages/ChangePassword";
+import UserList from "./pages/UserList";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/users" element={<UserList />} />
         </Routes>
       </BrowserRouter>
     </>

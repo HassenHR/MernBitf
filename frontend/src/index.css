@@ -41,6 +41,52 @@ nav {
   align-items: center;
 }
 
+.profile-nav {
+  background-color: black;
+  color: wheat;
+  padding: 0.5rem 2rem;
+}
+.profile-nav a {
+  color: wheat;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.user-bx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+}
+.search-box {
+  width: 120px;
+  height: 5vh;
+  background-color: red;
+  margin-top: 0.5rem;
+}
+.search-box input {
+  width: 100%;
+  padding: 0.5rem;
+  height: 100%;
+}
+.user-list-container {
+  max-width: 1200px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rm {
+  color: darkred;
+  background-color: transparent;
+  border: none;
+}
+.role-frm {
+  border: none;
+  width: 150px;
+}
+select {
+  width: 100px;
+}
 div ul {
   display: flex;
 }
