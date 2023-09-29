@@ -6,11 +6,13 @@ import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 import UserList from "./pages/UserList";
+import Loader from "./components/Loader";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Loader />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
