@@ -1,20 +1,34 @@
+const dotenv = require("dotenv").config();
+
 const express = require("express");
-const dtenv = require("dotenv").config();
-const app = express();
-const transactionRoutes = require("./routes/transactionRoutes");
-const connectDB = require("./utils/db");
+const mongoose = require("mongoose");
+const connect = require("./utils/db");
+const userRoutes = require("./routes/userRoute");
+
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const transactionModel = require("./models/transactionModel");
+const cookieParser = require("cookie-parser");
 
-const port = process.env.PORT;
-connectDB();
+const app = express();
+connect();
 
-app.use(cors());
-app.use(bodyParser.json());
+const port = process.env.PORT || 5100;
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:3000/", "http://myAppZ.vercel.app"],
+    credentials: true,
+  })
+);
 
-app.use("/transaction", transactionRoutes);
+app.use("/api/users", userRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Home page");
+});
 
 app.listen(port);
