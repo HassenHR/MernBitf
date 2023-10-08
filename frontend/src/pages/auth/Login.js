@@ -1,18 +1,46 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../../services/authServices";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialState);
 
-  const handleInputChange = (e) => {};
+  const { email, password } = formData;
 
-  const login = (e) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const login = async (e) => {
     e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    try {
+      const data = await loginUser(userData);
+      await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div>
+    <div className="center">
       <h1>Login</h1>
       <form onSubmit={login}>
         <input
@@ -21,6 +49,7 @@ function Login() {
           placeholder="Email"
           value={email}
           onChange={handleInputChange}
+          required
         />
         <input
           type="password"
@@ -28,11 +57,9 @@ function Login() {
           placeholder="Password"
           value={password}
           onChange={handleInputChange}
+          required
         />
         <button type="submit">Login</button>
-        <button type="submit" className="googl-login-btn">
-          Login with Google
-        </button>
         <div>
           <Link to="/forgot">Forgot password</Link>
         </div>

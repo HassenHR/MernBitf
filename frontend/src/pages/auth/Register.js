@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/authServices";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 
 const initialState = {
   name: "",
@@ -9,6 +12,9 @@ const initialState = {
 };
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(initialState);
 
   const { name, email, password, password2 } = formData;
@@ -18,12 +24,27 @@ function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault();
+
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
+    try {
+      const data = await registerUser(userData);
+      await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div>
+    <div className="center">
       <h1>Register</h1>
       <form onSubmit={register}>
         <input
@@ -32,6 +53,7 @@ function Login() {
           placeholder="Name"
           value={name}
           onChange={handleInputChange}
+          required
         />
         <input
           type="email"
@@ -39,6 +61,7 @@ function Login() {
           placeholder="Email"
           value={email}
           onChange={handleInputChange}
+          required
         />
         <input
           type="password"
@@ -46,6 +69,7 @@ function Login() {
           placeholder="Password"
           value={password}
           onChange={handleInputChange}
+          required
         />
         <input
           type="password"
@@ -53,6 +77,7 @@ function Login() {
           placeholder="Confirm Password"
           value={password2}
           onChange={handleInputChange}
+          required
         />
 
         <button type="submit">Register</button>

@@ -3,8 +3,11 @@ const {
   loginUser,
   logoutUser,
   getUser,
-} = require("../containers/userContainer");
-const protect = require("../middleware/authMiddleware");
+  loginStatus,
+  updateUser,
+} = require("../controllers/authController");
+
+const { protect } = require("../middleware/protect");
 
 const router = require("express").Router();
 
@@ -12,5 +15,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
 router.get("/getUser", protect, getUser);
+router.get("/loggedin", loginStatus);
+router.patch("/updateUser", protect, updateUser);
 
 module.exports = router;

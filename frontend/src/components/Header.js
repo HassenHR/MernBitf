@@ -1,7 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../services/authServices";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_LOGIN, selectName } from "../redux/features/auth/authSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const name = useSelector(selectName);
+
+  const logout = async () => {
+    await logoutUser();
+    await dispatch(SET_LOGIN(false));
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav>
@@ -13,19 +27,12 @@ function Header() {
           </div>
           <div>
             <ul>
+              <h4>Welcome, {name}</h4>
               <li>
-                <p>Hi, Hassen</p>
+                <Link to="/add-product">Add product</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
-              </li>
-
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-
-              <li>
-                <Link to="/">Logout</Link>
+                <button onClick={logout}>Logout</button>
               </li>
             </ul>
           </div>
