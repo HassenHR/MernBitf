@@ -1,6 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  deleteProduct,
+  getAllProducts,
+} from "../redux/features/product/productSlice";
+import { Link } from "react-router-dom";
 
 function ProductList({ products }) {
+  const dispatch = useDispatch();
+
+  const delProduct = async (id) => {
+    await dispatch(deleteProduct(id));
+    await dispatch(getAllProducts());
+  };
+
   return (
     <div>
       <hr />
@@ -27,8 +40,11 @@ function ProductList({ products }) {
                       <p>{price}</p>
                     </div>
                     <div>
+                      <Link to={`/product-detail/${_id}`}>
+                        <button>view</button>
+                      </Link>
                       <button>edit</button>
-                      <button>remove</button>
+                      <button onClick={() => delProduct(_id)}>remove</button>
                     </div>
                   </div>
                 );

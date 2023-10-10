@@ -13,6 +13,7 @@ import axios from "axios";
 import { getLoginStatus } from "./services/authServices";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import AddProduct from "./components/AddProduct";
+import ProductDetail from "../src/pages/ProductDetail";
 
 axios.defaults.withCredentials = true;
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/product-detail/:id" element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
     </>
