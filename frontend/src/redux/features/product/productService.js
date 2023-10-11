@@ -29,11 +29,20 @@ const getSingleProduct = async (id) => {
   return response.data;
 };
 
+// UPDATE PRODUCT
+const updateProduct = async (id, formData) => {
+  const response = await axios.put(
+    `http://localhost:5000/api/products/${id}`,
+    formData
+  );
+};
+
 const productService = {
   createProduct,
   getAllProducts,
   deleteProduct,
   getSingleProduct,
+  updateProduct,
 };
 
 export default productService;

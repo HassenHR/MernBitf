@@ -58,6 +58,18 @@ export const getSingleProduct = createAsyncThunk(
   }
 );
 
+// UPDATE PRODUCT
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      return await productService.updateProduct(id, formData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -111,6 +123,18 @@ const productSlice = createSlice({
       state.isSuccess = false;
       state.message = action.payload;
       toast.error(action.payload);
+    });
+    builder.addCase(updateProduct.rejected, (state, action) => {
+      state.isError = true;
+      state.isSuccess = false;
+      state.message = action.payload;
+      toast.error(action.payload);
+    });
+    builder.addCase(updateProduct.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isSuccess = true;
+      state.product = action.payload;
+      toast.success("Product updated successfully");
     });
   },
 });
