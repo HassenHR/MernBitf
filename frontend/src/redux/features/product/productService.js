@@ -31,10 +31,11 @@ const getSingleProduct = async (id) => {
 
 // UPDATE PRODUCT
 const updateProduct = async (id, formData) => {
-  const response = await axios.put(
+  const response = await axios.patch(
     `http://localhost:5000/api/products/${id}`,
     formData
   );
+  return response.data;
 };
 
 const productService = {

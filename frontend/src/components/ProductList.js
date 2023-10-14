@@ -43,7 +43,9 @@ function ProductList({ products }) {
                       <Link to={`/product-detail/${_id}`}>
                         <button>view</button>
                       </Link>
-                      <button>edit</button>
+                      <Link to={`/edit-product/${_id}`}>
+                        <button>edit</button>
+                      </Link>
                       <button onClick={() => delProduct(_id)}>remove</button>
                     </div>
                   </div>
